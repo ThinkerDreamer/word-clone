@@ -1,13 +1,12 @@
 import React from "react";
 import { checkGuess } from "../../game-helpers";
 import { range } from "../../utils";
-import { answer } from "../Game/Game";
 
-function Guess({ value }) {
-  // if (!guess) {
-  //   guess = "     ";
+function Guess({ value, answer }) {
+  // if (!value) {
+  //   value = "     ";
   // }
-  // let guessedWord = guess.split("");
+  // let guessedWord = value.split("");
 
   // return (
   //   <p className="guess">
@@ -23,17 +22,16 @@ function Guess({ value }) {
 
   return (
     <p className="guess">
-      {guessResult
-        ? guessResult.map(({ letter, status }, index) => (
-            <span key={index} className={`cell ${status}`}>
-              {letter ? letter : undefined}
-            </span>
-          ))
-        : range(5).map((num) => (
-            <span key={num} className={"cell"}>
-              {" "}
-            </span>
-          ))}
+      {range(5).map((index) => (
+        <span
+          key={index}
+          className={`cell ${
+            guessResult ? guessResult[index].letter : undefined
+          }`}
+        >
+          {guessResult ? guessResult[index].letter : undefined}
+        </span>
+      ))}
     </p>
   );
 }
